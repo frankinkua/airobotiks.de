@@ -1,1 +1,155 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Work in Progress</title></head><body style="font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0"><h1>airobotiks.de</h1></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Robotiks | Die Zukunft der intelligenten Robotik</title>
+    <meta name="description" content="Entdecken Sie, wie Künstliche Intelligenz die Robotik transformiert: von Wahrnehmung und Manipulation bis hin zu humanoiden Robotern, Cobots in der Industrie und Robotern in der Pflege.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Robotiks | Die Zukunft der intelligenten Robotik">
+    <meta property="og:description" content="Wie KI die Robotik in Wahrnehmung, Industrie, Pflege und mehr revolutioniert.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://airobotiks.de/">
+    <meta property="og:image" content="https://airobotiks.de/favicon.svg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="top-nav" aria-label="Hauptnavigation">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">AI Robotiks</a>
+            <ul class="nav-links">
+                <li><a href="#anwendungen">Anwendungen</a></li>
+                <li><a href="#historie">Historie</a></li>
+                <li><a href="#glossar">Glossar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header role="banner" class="hero" id="demo">
+        <div class="hero-content">
+            <h1>AI Robotiks</h1>
+            <p class="subtitle">Wie Künstliche Intelligenz die Robotik neu definiert</p>
+            <div class="demo-controls">
+                <button id="toggle-segments">Gelenke: 3</button>
+                <button id="reset-demo">Reset</button>
+            </div>
+        </div>
+        <canvas id="robot-canvas" aria-label="Interaktiver Roboterarm mit inverser Kinematik, steuerbar per Maus oder Touch"></canvas>
+    </header>
+
+    <main role="main" class="container">
+        <article>
+            <section id="einleitung" class="intro-section">
+                <h2>Eine neue Ära der Maschinen</h2>
+                <p>Über Jahrzehnte hinweg waren Roboter auf strikte, vorprogrammierte Aufgaben beschränkt. Sie wiederholten identische Bewegungen in kontrollierten Umgebungen wie Fabrikhallen, völlig blind und stumm gegenüber der Welt um sie herum. Durch den rasanten Fortschritt der Künstlichen Intelligenz (KI), insbesondere in den Bereichen Machine Learning und Computer Vision, erleben wir heute einen Paradigmenwechsel: Roboter lernen zu sehen, zu verstehen und sich autonom an unvorhergesehene Situationen anzupassen. Die Symbiose aus KI und Robotik ("AI Robotiks") schafft Systeme, die nicht mehr nur Werkzeuge sind, sondern intelligente Assistenten.</p>
+                <p>Diese Transformation basiert auf gewaltigen Fortschritten bei der Rechenleistung, der Sensortechnik und den algorithmischen Architekturen wie tiefen neuronalen Netzen. Roboter können heute komplexe Muster erkennen, aus Erfahrung lernen und Entscheidungen in Echtzeit treffen.</p>
+            </section>
+
+            <h2 id="anwendungen" class="section-title">Anwendungsfelder der KI-Robotik</h2>
+            <div class="grid-layout">
+                <section id="perception" class="card">
+                    <div class="card-icon">👁️</div>
+                    <h3>Wahrnehmung</h3>
+                    <p>Die Grundlage intelligenter Aktion. KI gibt Robotern "Augen". Durch LiDAR und neuronale Netze erfassen Roboter ihre Umgebung dreidimensional und verstehen sie semantisch. Sie erkennen Objekte, keine Pixelhaufen, was dynamische Navigation in unstrukturierten Umgebungen ermöglicht.</p>
+                </section>
+
+                <section id="manipulation" class="card">
+                    <div class="card-icon">🖐️</div>
+                    <h3>Manipulation</h3>
+                    <p>Physische Interaktion und Greifen unbekannter Objekte. KI-gestützte Roboter erlernen dies durch Reinforcement Learning in Simulationen (Sim-to-Real Transfer). Taktile Sensoren passen den Druck an, um selbst empfindlichste Gegenstände sicher zu handhaben.</p>
+                </section>
+
+                <section id="humanoids" class="card">
+                    <div class="card-icon">🧍</div>
+                    <h3>Humanoide</h3>
+                    <p>Zweibeinige Roboter, optimiert für eine für Menschen gebaute Welt (Treppen, Türen). KI meistert die komplexe Balance (Bipedal Locomotion). Gekoppelt mit multimodalen LLMs verstehen sie natürliche Sprachbefehle und planen Aufgabenfolgen selbstständig.</p>
+                </section>
+
+                <section id="cobots" class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Cobots</h3>
+                    <p>Kollaborative Roboter in der Industrie, die den Arbeitsraum mit Menschen teilen. KI macht sie adaptiv: Sie korrigieren Fehler in Millisekunden und lassen sich durch "Teach-In" (Vormachen) leicht programmieren, ideal für hochflexible Produktionslinien.</p>
+                </section>
+
+                <section id="care" class="card">
+                    <div class="card-icon">🏥</div>
+                    <h3>Pflege</h3>
+                    <p>Roboter im Gesundheitswesen übernehmen physische Unterstützung (Heben) und Aufgaben in der sozialen Betreuung. Sensible Sensorik erkennt Stürze, KI-basierte Emotionserkennung hilft in der sozialen Robotik, um das Fachpersonal von Routine zu entlasten.</p>
+                </section>
+            </div>
+
+            <h2 id="historie" class="section-title">Meilensteine der Robotik</h2>
+            <section class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1954</div>
+                    <div class="timeline-content">
+                        <h3>Unimate</h3>
+                        <p>George Devol erfindet den ersten programmierbaren Industrieroboter, später bei General Motors eingesetzt.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1969</div>
+                    <div class="timeline-content">
+                        <h3>Stanford Arm</h3>
+                        <p>Victor Scheinman entwickelt den ersten elektrisch angetriebenen, computergesteuerten Roboterarm mit sechs Gelenken.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1997</div>
+                    <div class="timeline-content">
+                        <h3>Sojourner</h3>
+                        <p>Der erste NASA-Rover auf dem Mars landet und beweist autonome Navigation in außerirdischem Terrain.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2000</div>
+                    <div class="timeline-content">
+                        <h3>ASIMO</h3>
+                        <p>Honda präsentiert den humanoiden Roboter, der dynamisches zweibeiniges Gehen revolutionierte.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-content">
+                        <h3>Boston Dynamics Atlas</h3>
+                        <p>Fortschritte in der Dynamik und Balance ermöglichen zweibeinigen Robotern Sprünge und Saltos auf unebenem Terrain.</p>
+                    </div>
+                </div>
+            </section>
+
+            <h2 id="glossar" class="section-title">Kurzglossar</h2>
+            <section class="glossary">
+                <dl>
+                    <dt>Inverse Kinematik (IK)</dt>
+                    <dd>Die Berechnung der erforderlichen Gelenkwinkel, um einen Endeffektor (z.B. Roboterhand) an eine bestimmte Position im Raum zu bringen.</dd>
+
+                    <dt>Reinforcement Learning</dt>
+                    <dd>Eine Methode des maschinellen Lernens, bei der eine KI durch Ausprobieren und ein Belohnungssystem lernt, komplexe Aufgaben wie das Greifen zu meistern.</dd>
+
+                    <dt>LiDAR</dt>
+                    <dd>Light Detection and Ranging; eine Sensortechnologie, die mit Laserimpulsen Entfernungen misst und hochpräzise 3D-Karten der Umgebung erstellt.</dd>
+
+                    <dt>Sim-to-Real Transfer</dt>
+                    <dd>Der Prozess, bei dem KI-Modelle in virtuellen Simulationen trainiert und anschließend erfolgreich auf physische Roboter in der realen Welt übertragen werden.</dd>
+                </dl>
+            </section>
+        </article>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; 2026 AI Robotiks. Alle Rechte vorbehalten.</p>
+            <p>
+                <a href="/impressum.html">Impressum</a> |
+                <a href="/datenschutz.html">Datenschutzerklärung</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>

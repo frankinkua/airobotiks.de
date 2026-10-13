@@ -1,11 +1,20 @@
 # AI Robotiks (airobotiks.de)
 
-Category: robotics-ai
+A static explainer website about how Artificial Intelligence is transforming robotics, accessible at [airobotiks.de](https://airobotiks.de/).
 
-## Concept
-An explainer site on how AI is changing robotics: sections on perception, manipulation, humanoids, cobots in industry and robots in care, plus a small interactive canvas demo where a simulated robot arm reaches toward the mouse pointer (inverse kinematics).
+## Overview
+This is a purely static site built with plain HTML5, CSS3, and Vanilla JavaScript. It features a "tech-lab" aesthetic and an interactive 2D canvas demo illustrating Inverse Kinematics using the FABRIK algorithm.
 
-## Look
-Tech-lab feel: dark graphite background, cyan and lime accents, grid lines, a futuristic display font for headings.
+The site is hosted directly on GitHub Pages from the `main` branch root, with no build steps, external dependencies, trackers, or cookies. It is fully responsive, accessible, supports dark mode by default, and respects user preferences for reduced motion.
 
-Repo: https://github.com/frankinkua/airobotiks.de
+## File Structure
+- `index.html`: Main landing page with detailed sections on perception, manipulation, humanoids, cobots, and care robots.
+- `style.css`: All styling, implementing the responsive graphite/cyan/lime tech-lab look.
+- `script.js`: Contains the logic for the interactive robot arm canvas demo.
+- `impressum.html`: Legal disclosure (Imprint) with placeholders.
+- `datenschutz.html`: Privacy policy stating no data is collected and explaining GitHub Pages hosting.
+- `404.html`: Custom error page in the same aesthetic.
+- `favicon.svg`: Inline vector icon.
+- `robots.txt` & `sitemap.xml`: Basic SEO configuration.
+- `CNAME`: Domain configuration for GitHub Pages.
+- `AGENTS.md`: Instruction file for AI agents building this site.
