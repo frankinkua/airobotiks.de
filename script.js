@@ -6,18 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     let width, height;
 
     // Robot arm parameters
-    const segments = 4;
-    const segmentLength = 60;
-    const totalLength = segments * segmentLength;
+    let segments = 3;
+    let segmentLength = 100;
+    let totalLength = segments * segmentLength;
 
     // Arm state
-    let joints = Array(segments + 1).fill().map(() => ({ x: 0, y: 0 }));
+    let joints = [];
     let target = { x: 0, y: 0 };
     let base = { x: 0, y: 0 };
 
     // Interaction state
     let isHovering = false;
     let time = 0;
+
+    function initJoints() {
+        joints = Array(segments + 1).fill().map(() => ({ x: 0, y: 0 }));
+        for (let i = 0; i <= segments; i++) {
+            joints[i] = { x: base.x, y: base.y - i * segmentLength };
+        }
+        totalLength = segments * segmentLength;
+    }
 
     function resize() {
         const container = canvas.parentElement;
@@ -30,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         base.x = width / 2;
         base.y = height;
 
-        // Initialize joints straight up
-        for (let i = 0; i <= segments; i++) {
-            joints[i] = { x: base.x, y: base.y - i * segmentLength };
-        }
+        // Adjust segment length based on screen size for better look
+        segmentLength = Math.min(width, height) / 3.5;
+
+        initJoints();
 
         // Default target
         if (!isHovering) {
@@ -59,15 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
         isHovering = true;
     }
 
+    // Mouse events
     canvas.addEventListener('mousemove', updateTarget);
-    canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault(); // Prevent scrolling while touching canvas
+    canvas.addEventListener('mouseleave', () => { isHovering = false; });
+    canvas.addEventListener('mouseenter', () => { isHovering = true; });
+
+    // Touch events
+    canvas.addEventListener('touchstart', (e) => {
+        // Only prevent default if touching the canvas directly to avoid scrolling issues
+        if(e.target === canvas) {
+            e.preventDefault();
+        }
         updateTarget(e);
     }, { passive: false });
 
-    canvas.addEventListener('mouseleave', () => {
-        isHovering = false;
-    });
+    canvas.addEventListener('touchmove', (e) => {
+        if(e.target === canvas) {
+            e.preventDefault();
+        }
+        updateTarget(e);
+    }, { passive: false });
+
     canvas.addEventListener('touchend', () => {
         isHovering = false;
     });
@@ -77,12 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2);
     }
 
-    // FABRIK algorithm (Forward And Backward Reaching Inverse Kinematics)
+    // FABRIK algorithm
     function solveIK() {
-        // Distance from base to target
         const d = dist(base, target);
 
-        // If target is unreachable, stretch towards it
         if (d >= totalLength) {
             for (let i = 0; i < segments; i++) {
                 const r = dist(target, joints[i]);
@@ -91,21 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 joints[i+1].y = (1 - lambda) * joints[i].y + lambda * target.y;
             }
         } else {
-            // Target is reachable
-            // Keep base joint stored temporarily
             const b = { x: joints[0].x, y: joints[0].y };
-
-            // Tolerance
             const tol = 0.1;
             let dif = dist(joints[segments], target);
             let iter = 0;
             const maxIter = 10;
 
             while (dif > tol && iter < maxIter) {
-                // Forward reaching (from end effector to base)
+                // Forward
                 joints[segments].x = target.x;
                 joints[segments].y = target.y;
-
                 for (let i = segments - 1; i >= 0; i--) {
                     const r = dist(joints[i+1], joints[i]);
                     const lambda = segmentLength / r;
@@ -113,10 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     joints[i].y = (1 - lambda) * joints[i+1].y + lambda * joints[i].y;
                 }
 
-                // Backward reaching (from base to end effector)
+                // Backward
                 joints[0].x = b.x;
                 joints[0].y = b.y;
-
                 for (let i = 0; i < segments; i++) {
                     const r = dist(joints[i+1], joints[i]);
                     const lambda = segmentLength / r;
@@ -133,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
         ctx.clearRect(0, 0, width, height);
 
-        // Background grid (optional subtle effect on canvas itself)
+        // Subtle background grid
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -150,13 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.strokeStyle = '#00f3ff';
         ctx.lineWidth = 4;
         ctx.beginPath();
-        ctx.arc(base.x, base.y, 30, Math.PI, 0); // Semi-circle base
+        ctx.arc(base.x, base.y, 40, Math.PI, 0);
         ctx.fill();
         ctx.stroke();
 
-        // Draw Arm Segments
+        // Draw Arm
         ctx.strokeStyle = '#e0e0e0';
-        ctx.lineWidth = 12;
+        ctx.lineWidth = 16;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
 
@@ -167,9 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ctx.stroke();
 
-        // Inner arm line for aesthetic
         ctx.strokeStyle = '#1e1e24';
-        ctx.lineWidth = 6;
+        ctx.lineWidth = 8;
         ctx.beginPath();
         ctx.moveTo(joints[0].x, joints[0].y);
         for (let i = 1; i <= segments; i++) {
@@ -181,31 +192,30 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i <= segments; i++) {
             ctx.fillStyle = i === segments ? '#39ff14' : '#00f3ff';
             ctx.beginPath();
-            ctx.arc(joints[i].x, joints[i].y, i === segments ? 8 : 10, 0, Math.PI * 2);
+            ctx.arc(joints[i].x, joints[i].y, i === segments ? 10 : 12, 0, Math.PI * 2);
             ctx.fill();
 
-            // Highlight
             ctx.fillStyle = '#ffffff';
             ctx.beginPath();
-            ctx.arc(joints[i].x - 2, joints[i].y - 2, 3, 0, Math.PI * 2);
+            ctx.arc(joints[i].x - 2, joints[i].y - 2, 4, 0, Math.PI * 2);
             ctx.fill();
         }
 
-        // Draw target indicator if hovering
+        // Target Indicator
         if (isHovering) {
             ctx.strokeStyle = 'rgba(57, 255, 20, 0.5)';
             ctx.lineWidth = 2;
             ctx.setLineDash([5, 5]);
             ctx.beginPath();
-            ctx.arc(target.x, target.y, 15 + Math.sin(time * 0.1) * 5, 0, Math.PI * 2);
+            ctx.arc(target.x, target.y, 20 + Math.sin(time * 0.1) * 5, 0, Math.PI * 2);
             ctx.stroke();
             ctx.setLineDash([]);
 
             ctx.beginPath();
-            ctx.moveTo(target.x - 25, target.y);
-            ctx.lineTo(target.x + 25, target.y);
-            ctx.moveTo(target.x, target.y - 25);
-            ctx.lineTo(target.x, target.y + 25);
+            ctx.moveTo(target.x - 30, target.y);
+            ctx.lineTo(target.x + 30, target.y);
+            ctx.moveTo(target.x, target.y - 30);
+            ctx.lineTo(target.x, target.y + 30);
             ctx.stroke();
         }
     }
@@ -213,11 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
         time++;
 
-        // Idle animation when not interacting
         if (!isHovering) {
-            const idleRadius = 80;
+            const idleRadius = 150;
             target.x = base.x + Math.sin(time * 0.02) * idleRadius;
-            target.y = base.y - 200 + Math.cos(time * 0.03) * idleRadius * 0.5;
+            target.y = base.y - 250 + Math.cos(time * 0.03) * idleRadius * 0.5;
         }
 
         solveIK();
@@ -226,7 +235,33 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
 
-    // Check if user prefers reduced motion
+    // UI Controls
+    const toggleBtn = document.getElementById('toggle-segments');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            segments = segments === 3 ? 2 : 3;
+            toggleBtn.textContent = `Gelenke: ${segments}`;
+            initJoints();
+            if(!isHovering) {
+                 target.x = base.x;
+                 target.y = base.y - totalLength + 50;
+            }
+        });
+    }
+
+    const resetBtn = document.getElementById('reset-demo');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isHovering = false;
+            initJoints();
+            time = 0;
+            target.x = base.x;
+            target.y = base.y - totalLength + 50;
+        });
+    }
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     resize();
@@ -234,11 +269,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!prefersReducedMotion) {
         animate();
     } else {
-        // Just draw once if reduced motion is on, and only update on hover
         solveIK();
         draw();
 
-        // Setup minimal updating for reduced motion
         let framePending = false;
         const updateReduced = () => {
             if (!framePending) {
@@ -259,5 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
             target.y = base.y - 200;
             updateReduced();
         });
+
+        if(toggleBtn) toggleBtn.addEventListener('click', updateReduced);
+        if(resetBtn) resetBtn.addEventListener('click', updateReduced);
     }
 });

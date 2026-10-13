@@ -7,9 +7,28 @@
     <meta name="robots" content="noindex, follow">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .page-header {
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+            margin-bottom: 40px;
+        }
+    </style>
 </head>
 <body>
-    <header role="banner">
+    <nav class="top-nav" aria-label="Hauptnavigation">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">AI Robotiks</a>
+            <ul class="nav-links">
+                <li><a href="/#anwendungen">Anwendungen</a></li>
+                <li><a href="/#historie">Historie</a></li>
+                <li><a href="/#glossar">Glossar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header role="banner" class="page-header">
         <div class="container">
             <h1>Datenschutz</h1>
             <p class="subtitle">Ihre Privatsphäre ist uns wichtig</p>
@@ -17,7 +36,7 @@
     </header>
 
     <main role="main" class="container">
-        <section>
+        <section class="card">
             <h2>Grundlegendes</h2>
             <p>Diese Website sammelt <strong>keine personenbezogenen Daten</strong>, verwendet <strong>keine Cookies</strong> und setzt <strong>keine Tracking- oder Analytics-Tools</strong> ein.</p>
 
@@ -44,7 +63,7 @@
 
     <footer role="contentinfo">
         <div class="container">
-            <p>&copy; 2024 AI Robotiks. Alle Rechte vorbehalten.</p>
+            <p>&copy; 2026 AI Robotiks. Alle Rechte vorbehalten.</p>
             <p>
                 <a href="/impressum.html">Impressum</a> |
                 <a href="/datenschutz.html">Datenschutzerklärung</a>
