@@ -1,1 +1,89 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Work in Progress</title></head><body style="font-family:system-ui;display:grid;place-items:center;min-height:100vh;margin:0"><h1>airobotiks.de</h1></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Robotiks | Die Zukunft der intelligenten Robotik</title>
+    <meta name="description" content="Entdecken Sie, wie Künstliche Intelligenz die Robotik transformiert: von Wahrnehmung und Manipulation bis hin zu humanoiden Robotern, Cobots in der Industrie und Robotern in der Pflege.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Robotiks | Die Zukunft der intelligenten Robotik">
+    <meta property="og:description" content="Wie KI die Robotik in Wahrnehmung, Industrie, Pflege und mehr revolutioniert.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://airobotiks.de/">
+    <meta property="og:image" content="https://airobotiks.de/favicon.svg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header role="banner">
+        <div class="container">
+            <h1>AI Robotiks</h1>
+            <p class="subtitle">Wie Künstliche Intelligenz die Robotik neu definiert</p>
+        </div>
+    </header>
+
+    <main role="main" class="container">
+        <article>
+            <section id="einleitung">
+                <h2>Eine neue Ära der Maschinen</h2>
+                <p>Über Jahrzehnte hinweg waren Roboter auf strikte, vorprogrammierte Aufgaben beschränkt. Sie wiederholten identische Bewegungen in kontrollierten Umgebungen wie Fabrikhallen, völlig blind und stumm gegenüber der Welt um sie herum. Durch den rasanten Fortschritt der Künstlichen Intelligenz (KI), insbesondere in den Bereichen Machine Learning und Computer Vision, erleben wir heute einen Paradigmenwechsel: Roboter lernen zu sehen, zu verstehen und sich autonom an unvorhergesehene Situationen anzupassen. Die Symbiose aus KI und Robotik ("AI Robotiks") schafft Systeme, die nicht mehr nur Werkzeuge sind, sondern intelligente Assistenten.</p>
+                <p>Diese Transformation findet nicht im luftleeren Raum statt, sondern basiert auf gewaltigen Fortschritten bei der Rechenleistung, der Sensortechnik und den algorithmischen Architekturen wie tiefen neuronalen Netzen. Roboter können heute komplexe Muster erkennen, aus Erfahrung lernen und Entscheidungen in Echtzeit treffen. Die Auswirkungen dieser Entwicklung werden tiefgreifend sein – von der industriellen Fertigung über die Logistik bis hin zu unserem alltäglichen Leben und der Gesundheitsversorgung.</p>
+            </section>
+
+            <section id="demo" aria-label="Interaktive Kinematik Demo">
+                <h2>Interaktive Demo: Inverse Kinematik</h2>
+                <p>Eines der grundlegenden Probleme der Robotik ist die Bewegungsplanung. Wie weiß ein Roboterarm, welche Winkel seine Gelenke einnehmen müssen, um einen bestimmten Punkt im Raum zu erreichen? Dies wird durch die "Inverse Kinematik" gelöst. Moderne KI-gestützte Systeme können diese Berechnungen in Echtzeit optimieren und so fließende, kollisionsfreie Bewegungen garantieren.</p>
+                <p><em>Bewegen Sie Ihre Maus (oder Ihren Finger auf Touchscreens) über die Fläche unten, um zu sehen, wie der simulierte Roboterarm sein Ziel in Echtzeit berechnet und ansteuert.</em></p>
+                <div class="demo-container">
+                    <canvas id="robot-canvas" aria-label="Simulation eines Roboterarms, der der Maus folgt"></canvas>
+                </div>
+            </section>
+
+            <section id="perception">
+                <h2>Wahrnehmung (Perception)</h2>
+                <p>Die Grundlage jeder intelligenten Aktion ist die Wahrnehmung. KI gibt Robotern gewissermaßen "Augen" und "Ohren". Durch die Kombination von hochauflösenden Kameras, LiDAR-Sensoren und tiefen neuronalen Netzen können Roboter ihre Umgebung nicht nur dreidimensional erfassen, sondern auch semantisch verstehen. Sie erkennen, dass ein Hindernis kein abstrakter Pixelhaufen ist, sondern ein Mensch, ein Tisch oder ein Werkstück.</p>
+                <p>Die semantische Segmentierung ermöglicht es dem Roboter, die Welt in Objekte zu unterteilen, während Algorithmen zur Objekterkennung bestimmte Ziele identifizieren, selbst wenn diese teilweise verdeckt oder in unterschiedlichen Lichtverhältnissen präsentiert werden. Dies ist der fundamentale Baustein für autonome Navigation und sichere Interaktion in unstrukturierten Umgebungen. Ein Roboter, der seine Umgebung versteht, kann dynamisch auf Veränderungen reagieren – ein absolutes Muss für den Einsatz außerhalb streng kontrollierter Laborbedingungen.</p>
+            </section>
+
+            <section id="manipulation">
+                <h2>Manipulation und Greifen</h2>
+                <p>Die physische Interaktion mit der Welt, insbesondere das Greifen (Manipulation) unbekannter Objekte, galt lange als eines der schwierigsten Probleme der Robotik. Menschen passen ihren Griff intuitiv an das Gewicht, die Oberflächenbeschaffenheit und die Form eines Gegenstands an. KI-gestützte Roboter erlernen diese Fähigkeiten heute durch Techniken wie Reinforcement Learning (Bestärkendes Lernen).</p>
+                <p>In Simulationen üben Roboter Millionen von Greifvorgängen, bevor sie dieses Wissen auf die reale Welt übertragen (Sim-to-Real Transfer). Ausgestattet mit taktilen Sensoren können moderne Roboterhände den Druck anpassen, um selbst zerbrechliche Gegenstände wie rohe Eier oder empfindliches Obst sicher zu handhaben. Diese "Deep Manipulation"-Fähigkeiten eröffnen völlig neue Einsatzgebiete in der Logistik, etwa beim Kommissionieren von stark variierenden Artikeln in Warenlagern, wo herkömmliche, rein regelbasierte Systeme scheitern würden.</p>
+            </section>
+
+            <section id="humanoids">
+                <h2>Humanoide Roboter</h2>
+                <p>Der Bau eines humanoiden, zweibeinigen Roboters stellt die Königsklasse der Robotik dar. Die menschliche Anatomie ist für eine extrem vielfältige Umgebung optimiert – unsere Welt ist für Menschen gebaut: Treppen, Türen, Werkzeuge. Humanoide Roboter versprechen, nahtlos in diese Umgebungen integriert zu werden, ohne dass die Infrastruktur angepasst werden muss.</p>
+                <p>KI ist der Schlüssel, um die enorme Komplexität der zweibeinigen Fortbewegung (Bipedal Locomotion) und des dynamischen Gleichgewichts zu meistern. Anstatt jede Bewegung vorzuprogrammieren, nutzen moderne Humanoide KI-Modelle, um die Balance zu halten, wenn sie gestoßen werden, oder um sich in unebenem Gelände zu bewegen. Darüber hinaus ermöglichen multimodale Sprachmodelle (wie LLMs) diesen Systemen, natürliche Sprachbefehle zu verstehen und komplexe Aufgabenfolgen ("Gehe in die Küche, hole einen Apfel und bringe ihn mir") selbstständig zu planen und auszuführen.</p>
+            </section>
+
+            <section id="cobots">
+                <h2>Cobots in der Industrie</h2>
+                <p>Kollaborative Roboter, sogenannte Cobots, repräsentieren einen Wandel in der industriellen Fertigung. Während klassische Industrieroboter aus Sicherheitsgründen hinter Schutzzäunen arbeiten müssen, sind Cobots dafür konzipiert, den Arbeitsraum physisch mit Menschen zu teilen. Sie unterstützen Arbeiter bei ergonomisch belastenden, monotonen oder gefährlichen Tätigkeiten.</p>
+                <p>Dank KI werden diese Cobots nicht nur sicher, sondern auch flexibel. Sie lassen sich oft durch einfaches Vormachen ("Teach-In") anlernen und passen sich adaptiv an Fehler oder Unregelmäßigkeiten im Produktionsprozess an. Wenn ein Werkstück leicht verschoben auf dem Band ankommt, erkennt die KI-Kamera dies und korrigiert die Greifbewegung automatisch in Millisekunden. Dies senkt die Hürden für die Automatisierung erheblich, sodass auch kleine und mittelständische Unternehmen hochflexible Produktionslinien aufbauen können, die zuvor nur Konzernen vorbehalten waren.</p>
+            </section>
+
+            <section id="care">
+                <h2>Roboter in der Pflege</h2>
+                <p>Angesichts des demografischen Wandels und des wachsenden Fachkräftemangels im Gesundheitswesen wird der Einsatz von Robotern in der Pflege zunehmend relevant. KI-Roboter in diesem Bereich müssen nicht nur funktional, sondern auch sozial intelligent und absolut sicher sein. Ihre Aufgaben reichen von der physischen Unterstützung, wie dem Heben von Patienten oder dem Transport von Medikamenten, bis hin zur kognitiven und sozialen Betreuung.</p>
+                <p>Sensible Sensorik und KI-gestützte Verhaltensanalyse ermöglichen es Pflege-Robotern, Stürze zu erkennen oder an Medikamenteneinnahmen zu erinnern. Besonders im Bereich der sozialen Robotik (z.B. therapeutische Roboter bei Demenzerkrankungen) spielt die KI-basierte Emotionserkennung und natürliche Sprachverarbeitung eine entscheidende Rolle. Obwohl Roboter menschliche Zuwendung und Empathie niemals ersetzen können und sollen, bieten sie ein enormes Potenzial, das Pflegepersonal von Routineaufgaben zu entlasten, sodass dieses mehr Zeit für die essenzielle, zwischenmenschliche Pflege hat.</p>
+            </section>
+        </article>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; 2024 AI Robotiks. Alle Rechte vorbehalten.</p>
+            <p>
+                <a href="/impressum.html">Impressum</a> |
+                <a href="/datenschutz.html">Datenschutzerklärung</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+</body>
+</html>
